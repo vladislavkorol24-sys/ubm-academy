@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UBM Academy</title>
+<style>
+:root{--navy:#1E2761;--navy2:#2B3566;--gold:#D4AF37;--bg:#F6F4EE;--card:#fff;--line:#D5DBEE;--text:#1E2761;--muted:#5B6280;--ok:#2E7D32;--bad:#B3261E;--soft:#EEF1FA}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Segoe UI',Arial,sans-serif;font-size:16px;line-height:1.5}
+a{color:var(--navy)}
+header{background:var(--navy);color:#fff;border-bottom:4px solid var(--gold)}
+.bar{max-width:1120px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.logo{font-weight:700;font-size:20px;letter-spacing:.5px;cursor:pointer}
+.logo span{color:var(--gold)}
+nav{display:flex;gap:6px;flex:1;flex-wrap:wrap}
+nav a,nav button.link{color:#CADCFC;text-decoration:none;padding:6px 12px;border-radius:8px;font-size:15px;background:none;border:0;cursor:pointer;font-family:inherit}
+nav a.on{background:var(--navy2);color:#fff}
+.who{font-size:14px;color:#CADCFC}
+main{max-width:1120px;margin:0 auto;padding:28px 20px 80px}
+h1{font-size:30px;margin:0 0 6px;line-height:1.2}
+h2{font-size:22px;margin:28px 0 12px}
+h3{font-size:17px;margin:18px 0 6px}
+.sub{color:var(--muted);margin:0 0 22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.grid{display:grid;gap:16px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.big{font-size:34px;font-weight:700;line-height:1.1}
+.lab{color:var(--muted);font-size:14px}
+.btn{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:10px 18px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block}
+.btn:hover{background:var(--navy2)}
+.btn.gold{background:var(--gold);color:var(--navy)}
+.btn.ghost{background:#fff;color:var(--navy);border:1px solid var(--line)}
+.btn:disabled{opacity:.5;cursor:default}
+input[type=text],input[type=email],input[type=password],input[type=url],select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;background:#fff;color:var(--text)}
+label{display:block;font-size:14px;color:var(--muted);margin:12px 0 4px}
+.lesson{display:flex;gap:16px;align-items:center;padding:16px 20px;border:1px solid var(--line);border-radius:14px;background:#fff;margin-bottom:10px;cursor:pointer;text-decoration:none;color:inherit}
+.lesson:hover{border-color:var(--navy)}
+.num{width:42px;height:42px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+.num.zero{background:var(--gold);color:var(--navy)}
+.lt{flex:1;min-width:0}
+.lt b{display:block}
+.lt span{color:var(--muted);font-size:14px}
+.badge{font-size:13px;padding:3px 10px;border-radius:20px;background:var(--soft);color:var(--navy);white-space:nowrap}
+.badge.ok{background:#E3F2E4;color:var(--ok)}
+.badge.warn{background:#FFF3D6;color:#8A6500}
+.badge.bad{background:#FBE4E2;color:var(--bad)}
+.badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.prog{height:10px;background:var(--soft);border-radius:6px;overflow:hidden;min-width:80px}
+.prog i{display:block;height:100%;background:var(--navy);border-radius:6px}
+.prog.ok i{background:var(--ok)}
+.video{position:relative;padding-top:56.25%;background:#10163a;border-radius:14px;overflow:hidden}
+.video iframe,.video>div{position:absolute;inset:0;width:100%;height:100%;border:0}
+.novideo{display:flex;align-items:center;justify-content:center;color:#CADCFC;text-align:center;padding:20px}
+.content h2{font-size:20px;margin:22px 0 8px}
+.content ul{padding-left:22px}
+.content p{margin:8px 0}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{background:var(--navy);color:#fff;text-align:left;padding:10px;font-weight:600}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr.click{cursor:pointer}
+tr.click:hover td{background:var(--soft)}
+.scroll{overflow-x:auto;border-radius:12px;border:1px solid var(--line);background:#fff}
+.days{display:flex;gap:3px}
+.days i{width:18px;height:18px;border-radius:4px;background:var(--soft);display:block;font-style:normal;font-size:10px;text-align:center;line-height:18px;color:var(--navy)}
+.days i.f{background:var(--ok);color:#fff}
+.days i.p{background:#F1D27A}
+.tasks{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tasks span{font-size:13px;padding:3px 8px;border-radius:8px;background:#FBE4E2;color:var(--bad)}
+.tasks span.ok{background:#E3F2E4;color:var(--ok)}
+.msg{padding:12px 14px;border-radius:10px;margin:12px 0;font-size:14px}
+.msg.err{background:#FBE4E2;color:var(--bad)}
+.msg.ok{background:#E3F2E4;color:var(--ok)}
+.msg.info{background:var(--soft);color:var(--navy)}
+.auth{max-width:420px;margin:60px auto}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tabs button{flex:1;padding:10px;border:1px solid var(--line);background:#fff;border-radius:10px;cursor:pointer;font-family:inherit;font-size:15px}
+.tabs button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.nav2{display:flex;justify-content:space-between;margin-top:30px;gap:10px;flex-wrap:wrap}
+.muted{color:var(--muted)}
+.hide{display:none}
+@media(max-width:640px){h1{font-size:24px}.lesson{flex-wrap:wrap}.badges{justify-content:flex-start}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <div class="logo" onclick="location.hash='#/'">UBM <span>Academy</span></div>
+  <nav id="nav"></nav>
+  <div class="who" id="who"></div>
+</div></header>
+<main id="app"><p class="muted">Загрузка…</p></main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const SUPABASE_URL='https://bgsxndzguuwzrzyoeghb.supabase.co';
+const SUPABASE_KEY='sb_publishable_b_qOgTxzW5qm5DXdTDZQrA_P1GOndZ4';
+const COURSE_SLUG='basic-excel';
+const DAYS=[1,2,3,4,5,6,7];
+const DAY_TOTAL={1:9,2:8,3:6,4:9,5:9,6:10,7:15};
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let S={user:null,profile:null,course:null,lessons:[],progress:{},lastSub:null};
+const $=s=>document.querySelector(s);
+const esc=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=d=>d?new Date(d).toLocaleString('ru-RU',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
+const ago=d=>{if(!d)return '—';const n=Math.floor((Date.now()-new Date(d))/86400000);return n<=0?'сегодня':n===1?'вчера':n+' дн. назад'};
+
+function md(text){
+  const out=[];let list=false;
+  for(const raw of String(text||'').split('\n')){
+    const l=raw.trim();
+    if(l.startsWith('- ')){if(!list){out.push('<ul>');list=true}out.push('<li>'+esc(l.slice(2))+'</li>');continue}
+    if(list){out.push('</ul>');list=false}
+    if(l.startsWith('## '))out.push('<h2>'+esc(l.slice(3))+'</h2>');
+    else if(l)out.push('<p>'+esc(l)+'</p>');
+  }
+  if(list)out.push('</ul>');
+  return out.join('');
+}
+function ytId(u){
+  if(!u)return null;
+  const m=String(u).match(/(?:youtu\.be\/|v=|embed\/|shorts\/)([A-Za-z0-9_-]{11})/);
+  return m?m[1]:null;
+}
+
+/* ---------- данные ---------- */
+async function loadAll(){
+  const {data:{user}}=await sb.auth.getUser();
+  S.user=user;
+  const [p,c]=await Promise.all([
+    sb.from('profiles').select('*').eq('id',user.id).single(),
+    sb.from('courses').select('*').eq('slug',COURSE_SLUG).single()
+  ]);
+  S.profile=p.data;S.course=c.data;
+  const [l,pr,sub]=await Promise.all([
+    sb.from('lessons').select('*').eq('course_id',S.course.id).order('position'),
+    sb.from('lesson_progress').select('*').eq('user_id',user.id),
+    sb.from('submissions').select('*').eq('user_id',user.id).order('uploaded_at',{ascending:false}).limit(1)
+  ]);
+  S.lessons=l.data||[];
+  S.progress={};(pr.data||[]).forEach(r=>S.progress[r.lesson_id]=r);
+  S.lastSub=(sub.data||[])[0]||null;
+}
+function header(){
+  const a=location.hash;
+  const items=[['#/','Курс']];
+  if(S.profile?.role==='admin')items.push(['#/admin','Кабинет наставника']);
+  $('#nav').innerHTML=items.map(([h,t])=>`<a href="${h}" class="${(a===h||(h==='#/'&&(a===''||a.startsWith('#/lesson'))))?'on':''}">${t}</a>`).join('')+'<button class="link" id="out">Выйти</button>';
+  $('#who').textContent=S.profile?.full_name||S.user?.email||'';
+  $('#out').onclick=async()=>{await sb.auth.signOut()};
+}
+
+/* ---------- авторизация ---------- */
+function showAuth(){
+  $('#nav').innerHTML='';$('#who').textContent='';
+  $('#app').innerHTML=`<div class="auth card">
+    <h1>UBM Academy</h1><p class="sub">Платформа обучения UBM Finances Academy</p>
+    <div class="tabs"><button id="t1" class="on">Вход</button><button id="t2">Регистрация</button></div>
+    <form id="f">
+      <div id="nameBox" class="hide"><label>Имя и фамилия</label><input type="text" id="name" autocomplete="name"></div>
+      <label>Почта</label><input type="email" id="email" required autocomplete="email">
+      <label>Пароль (не короче 6 символов)</label><input type="password" id="pass" required minlength="6" autocomplete="current-password">
+      <div id="m"></div>
+      <p><button class="btn" id="go" style="width:100%">Войти</button></p>
+    </form></div>`;
+  let reg=false;
+  const set=r=>{reg=r;$('#t1').classList.toggle('on',!r);$('#t2').classList.toggle('on',r);$('#nameBox').classList.toggle('hide',!r);$('#go').textContent=r?'Создать аккаунт':'Войти';$('#m').innerHTML=''};
+  $('#t1').onclick=()=>set(false);$('#t2').onclick=()=>set(true);
+  $('#f').onsubmit=async e=>{
+    e.preventDefault();$('#go').disabled=true;$('#m').innerHTML='';
+    const email=$('#email').value.trim(),password=$('#pass').value;
+    let r;
+    if(reg)r=await sb.auth.signUp({email,password,options:{data:{full_name:$('#name').value.trim()}}});
+    else r=await sb.auth.signInWithPassword({email,password});
+    $('#go').disabled=false;
+    if(r.error){$('#m').innerHTML='<div class="msg err">'+esc(r.error.message==='Invalid login credentials'?'Неверная почта или пароль':r.error.message)+'</div>';return}
+    if(reg&&!r.data.session)$('#m').innerHTML='<div class="msg info">Аккаунт создан. Подтвердите почту по письму и затем войдите.</div>';
+  };
+}
+
+/* ---------- загрузка домашки ---------- */
+function uploadBlock(el,onDone){
+  el.innerHTML=`<h3 style="margin-top:0">Загрузить тетрадь на проверку</h3>
+  <p class="muted" style="margin:0 0 10px">Файл .xlsx из практической тетради (все 7 листов). Из Google Таблиц: Файл → Скачать → Microsoft Excel (.xlsx). Платформа считает выполненные задания по всем дням.</p>
+  <div class="row"><input type="file" id="file" accept=".xlsx"><button class="btn gold" id="send">Отправить на проверку</button></div><div id="um"></div>`;
+  $('#send').onclick=async()=>{
+    const f=$('#file').files[0];const m=$('#um');
+    if(!f){m.innerHTML='<div class="msg err">Выберите файл .xlsx</div>';return}
+    if(!f.name.toLowerCase().endsWith('.xlsx')){m.innerHTML='<div class="msg err">Нужен файл в формате .xlsx</div>';return}
+    if(f.size>10*1024*1024){m.innerHTML='<div class="msg err">Файл больше 10 МБ</div>';return}
+    $('#send').disabled=true;m.innerHTML='<div class="msg info">Загружаю и проверяю…</div>';
+    const safe=f.name.replace(/[^A-Za-z0-9._-]/g,'_');
+    const path=`${S.user.id}/${Date.now()}-${safe}`;
+    const up=await sb.storage.from('homework').upload(path,f,{contentType:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    if(up.error){m.innerHTML='<div class="msg err">'+esc(up.error.message)+'</div>';$('#send').disabled=false;return}
+    const r=await sb.functions.invoke('check-homework',{body:{path,course_slug:COURSE_SLUG}});
+    $('#send').disabled=false;
+    let err=r.error?r.error.message:r.data?.error;
+    if(r.error&&r.error.context&&r.error.context.json){try{const j=await r.error.context.json();err=j.error||err}catch(e){}}
+    if(err){m.innerHTML='<div class="msg err">'+esc(err)+'</div>';return}
+    S.lastSub=r.data.submission;
+    m.innerHTML=`<div class="msg ok">Готово: верно ${S.lastSub.done_tasks} из ${S.lastSub.total_tasks} заданий.</div>`;
+    onDone&&onDone();
+  };
+}
+
+/* ---------- главная курса ---------- */
+function dayStat(n){const d=S.lastSub?.by_day?.[n];return d?{done:d.done,total:d.total}:null}
+function viewHome(){
+  header();
+  const L=S.lessons;
+  const opened=L.filter(l=>S.progress[l.id]).length;
+  const sub=S.lastSub;
+  const pct=sub&&sub.total_tasks?Math.round(sub.done_tasks/sub.total_tasks*100):0;
+  $('#app').innerHTML=`
+  <h1>${esc(S.course.title)}</h1><p class="sub">${esc(S.course.description||'')}</p>
+  <div class="grid g3">
+    <div class="card"><div class="big">${opened}/${L.length}</div><div class="lab">уроков открыто</div></div>
+    <div class="card"><div class="big">${sub?sub.done_tasks+'/'+sub.total_tasks:'—'}</div><div class="lab">заданий выполнено верно${sub?' ('+pct+'%)':''}</div>${sub?`<div class="prog" style="margin-top:8px"><i style="width:${pct}%"></i></div>`:''}</div>
+    <div class="card"><div class="lab">Материалы</div><p style="margin:6px 0"><a href="files/UBM-Excel-7-days.xlsx" download>Практическая тетрадь (.xlsx)</a></p><p style="margin:0"><a href="files/UBM-Excel-7-days-slides.pdf" target="_blank">Презентация (.pdf)</a></p></div>
+  </div>
+  <h2>Уроки</h2><div id="list"></div>
+  <div class="card" id="upl" style="margin-top:20px"></div>`;
+  $('#list').innerHTML=L.map(l=>{
+    const p=S.progress[l.id];const wp=p?p.watch_percent:0;
+    const ds=l.task_sheet?dayStat(l.position):null;
+    let b='';
+    if(l.video_url)b+=`<span class="badge ${wp>=80?'ok':''}">видео ${wp}%</span>`;else b+='<span class="badge">видео скоро</span>';
+    if(l.task_sheet)b+=ds?`<span class="badge ${ds.done===ds.total?'ok':'warn'}">задания ${ds.done}/${ds.total}</span>`:'<span class="badge">задания не сданы</span>';
+    return `<a class="lesson" href="#/lesson/${l.position}"><div class="num ${l.position===0?'zero':''}">${l.position===0?'★':l.position}</div><div class="lt"><b>${esc(l.title)}</b><span>${esc(l.summary||'')}</span></div><div class="badges">${b}</div></a>`;
+  }).join('');
+  uploadBlock($('#upl'),viewHome);
+}
+
+/* ---------- урок и плеер ---------- */
+let ytTimer=null,ytPlayer=null;
+function loadYT(){return new Promise(res=>{if(window.YT&&YT.Player)return res();const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';window.onYouTubeIframeAPIReady=res;document.head.appendChild(s)})}
+async function saveProgress(lesson,percent){
+  const cur=S.progress[lesson.id];
+  const val=Math.max(cur?cur.watch_percent:0,Math.min(100,Math.round(percent)));
+  if(cur&&val===cur.watch_percent){await sb.from('lesson_progress').update({last_watched_at:new Date().toISOString()}).eq('user_id',S.user.id).eq('lesson_id',lesson.id);return}
+  const row={user_id:S.user.id,lesson_id:lesson.id,watch_percent:val,last_watched_at:new Date().toISOString()};
+  const r=await sb.from('lesson_progress').upsert(row,{onConflict:'user_id,lesson_id'}).select().single();
+  if(r.data)S.progress[lesson.id]=r.data;
+}
+async function viewLesson(pos){
+  header();
+  clearInterval(ytTimer);ytTimer=null;ytPlayer=null;
+  const L=S.lessons;const i=L.findIndex(l=>l.position===pos);
+  if(i<0){location.hash='#/';return}
+  const l=L[i];
+  if(!S.progress[l.id]){
+    const r=await sb.from('lesson_progress').insert({user_id:S.user.id,lesson_id:l.id}).select().single();
+    if(r.data)S.progress[l.id]=r.data;
+  }
+  const vid=ytId(l.video_url);
+  const ds=l.task_sheet?S.lastSub?.by_day?.[l.position]:null;
+  let tasksHtml='';
+  if(l.task_sheet){
+    if(ds){
+      tasksHtml=`<h2>Ваши задания дня: ${ds.done} из ${ds.total}</h2><div class="prog ${ds.done===ds.total?'ok':''}"><i style="width:${Math.round(ds.done/ds.total*100)}%"></i></div><div class="tasks">${Object.entries(ds.tasks).map(([k,v])=>`<span class="${v?'ok':''}">${esc(k)} ${v?'✓':'✗'}</span>`).join('')}</div><p class="muted">По последней загруженной тетради (${fmt(S.lastSub.uploaded_at)}).</p>`;
+    }else tasksHtml='<h2>Задания дня</h2><p class="muted">Тетрадь ещё не загружена. Выполните задания на листе «'+esc(l.task_sheet)+'» и загрузите файл ниже.</p>';
+  }
+  $('#app').innerHTML=`
+  <p><a href="#/">← Все уроки</a></p>
+  <h1>${esc(l.title)}</h1><p class="sub">${esc(l.summary||'')}</p>
+  <div class="video" id="vbox">${vid?'<div id="yt"></div>':'<div class="novideo">Видео к этому уроку скоро появится.<br>Пока изучите текст ниже и выполните задания.</div>'}</div>
+  <div class="card content" style="margin-top:18px">${md(l.content)}</div>
+  ${l.task_sheet?`<div class="card" style="margin-top:18px">${tasksHtml}</div><div class="card" style="margin-top:18px" id="upl"></div>`:''}
+  <div class="nav2">${i>0?`<a class="btn ghost" href="#/lesson/${L[i-1].position}">← ${esc(L[i-1].title)}</a>`:'<span></span>'}${i<L.length-1?`<a class="btn" href="#/lesson/${L[i+1].position}">${esc(L[i+1].title)} →</a>`:''}</div>`;
+  if(l.task_sheet)uploadBlock($('#upl'),()=>viewLesson(pos));
+  if(vid){
+    await loadYT();
+    let watched=0;const base=S.progress[l.id]?.watch_percent||0;let dur=0;let lastSent=base;
+    ytPlayer=new YT.Player('yt',{videoId:vid,playerVars:{rel:0,modestbranding:1},events:{
+      onReady:e=>{dur=e.target.getDuration();watched=dur*base/100},
+      onStateChange:e=>{
+        if(e.data===YT.PlayerState.PLAYING){
+          clearInterval(ytTimer);
+          ytTimer=setInterval(()=>{
+            if(!dur)dur=ytPlayer.getDuration();
+            watched+=1;
+            const p=dur?watched/dur*100:0;
+            if(p-lastSent>=5||p>=98){lastSent=p;saveProgress(l,p)}
+          },1000);
+        }else{
+          clearInterval(ytTimer);
+          if(e.data===YT.PlayerState.ENDED){saveProgress(l,100)}
+          else if(dur){saveProgress(l,watched/dur*100)}
+        }
+      }}});
+  }
+}
+
+/* ---------- кабинет наставника ---------- */
+async function viewAdmin(){
+  header();
+  if(S.profile?.role!=='admin'){location.hash='#/';return}
+  $('#app').innerHTML='<p class="muted">Загружаю данные…</p>';
+  const [pr,pg,sb2]=await Promise.all([
+    sb.from('profiles').select('*').order('created_at'),
+    sb.from('lesson_progress').select('*'),
+    sb.from('submissions').select('*').order('uploaded_at',{ascending:false})
+  ]);
+  const students=(pr.data||[]).filter(p=>p.role==='student');
+  const prog=pg.data||[],subs=sb2.data||[];
+  const nLessons=S.lessons.length;
+  const rows=students.map(s=>{
+    const myP=prog.filter(x=>x.user_id===s.id);
+    const mySubs=subs.filter(x=>x.user_id===s.id);
+    const last=mySubs[0];
+    const dates=[...myP.map(x=>x.last_watched_at),...myP.map(x=>x.opened_at),...mySubs.map(x=>x.uploaded_at)].filter(Boolean).sort();
+    const act=dates.length?dates[dates.length-1]:null;
+    const withVideo=S.lessons.filter(l=>l.video_url);
+    const avg=withVideo.length?Math.round(withVideo.reduce((a,l)=>a+(myP.find(x=>x.lesson_id===l.id)?.watch_percent||0),0)/withVideo.length):null;
+    const pct=last&&last.total_tasks?Math.round(last.done_tasks/last.total_tasks*100):0;
+    let st='Не начинал',cls='bad';
+    if(act){const d=(Date.now()-new Date(act))/86400000;if(d<=3){st='Активен';cls='ok'}else{st='Давно не заходил';cls='warn'}}
+    return {s,myP,mySubs,last,act,avg,pct,st,cls};
+  });
+  const active=rows.filter(r=>r.cls==='ok').length;
+  const avgPct=rows.length?Math.round(rows.reduce((a,r)=>a+r.pct,0)/rows.length):0;
+  $('#app').innerHTML=`
+  <h1>Кабинет наставника</h1><p class="sub">Прогресс учеников курса «${esc(S.course.title)}»</p>
+  <div class="grid g3">
+    <div class="card"><div class="big">${rows.length}</div><div class="lab">учеников</div></div>
+    <div class="card"><div class="big">${active}</div><div class="lab">активны за последние 3 дня</div></div>
+    <div class="card"><div class="big">${avgPct}%</div><div class="lab">средний процент заданий</div></div>
+  </div>
+  <h2>Ученики</h2>
+  <div class="scroll"><table><thead><tr><th>Ученик</th><th>Активность</th><th>Уроков</th><th>Видео, средн.</th><th>Задания</th><th>По дням</th><th>Статус</th></tr></thead><tbody id="tb"></tbody></table></div>
+  <div id="detail"></div>
+  <h2>Ссылки на видео уроков</h2>
+  <div class="card" id="vids"></div>`;
+  $('#tb').innerHTML=rows.length?rows.map((r,i)=>`<tr class="click" data-i="${i}">
+    <td><b>${esc(r.s.full_name||'—')}</b><br><span class="muted">${esc(r.s.email)}</span></td>
+    <td>${ago(r.act)}<br><span class="muted">${fmt(r.act)}</span></td>
+    <td>${r.myP.length}/${nLessons}</td>
+    <td>${r.avg===null?'—':r.avg+'%'}</td>
+    <td>${r.last?r.last.done_tasks+'/'+r.last.total_tasks+' ('+r.pct+'%)':'—'}</td>
+    <td><div class="days">${DAYS.map(d=>{const x=r.last?.by_day?.[d];const c=!x||!x.done?'':(x.done===x.total?'f':'p');return `<i class="${c}" title="День ${d}: ${x?x.done+'/'+x.total:'нет'}">${d}</i>`}).join('')}</div></td>
+    <td><span class="badge ${r.cls}">${r.st}</span></td></tr>`).join(''):'<tr><td colspan="7" class="muted">Пока никто не зарегистрировался</td></tr>';
+  document.querySelectorAll('#tb tr.click').forEach(tr=>tr.onclick=()=>showStudent(rows[+tr.dataset.i]));
+  // редактор видео
+  $('#vids').innerHTML=S.lessons.map(l=>`<div class="row" style="margin-bottom:8px"><div style="width:260px;max-width:100%"><b>${esc(l.title)}</b></div><div style="flex:1;min-width:220px"><input type="url" data-id="${l.id}" value="${esc(l.video_url||'')}" placeholder="Ссылка на YouTube (по ссылке)"></div></div>`).join('')+'<p><button class="btn" id="savev">Сохранить ссылки</button> <span id="vm"></span></p>';
+  $('#savev').onclick=async()=>{
+    $('#savev').disabled=true;
+    for(const inp of document.querySelectorAll('#vids input')){
+      const v=inp.value.trim();
+      await sb.from('lessons').update({video_url:v||null}).eq('id',inp.dataset.id);
+      const l=S.lessons.find(x=>x.id===inp.dataset.id);if(l)l.video_url=v||null;
+    }
+    $('#savev').disabled=false;$('#vm').innerHTML='<span class="badge ok">Сохранено</span>';
+  };
+}
+async function showStudent(r){
+  const d=$('#detail');
+  const lines=S.lessons.map(l=>{const p=r.myP.find(x=>x.lesson_id===l.id);return `<tr><td>${esc(l.title)}</td><td>${p?(l.video_url?p.watch_percent+'%':'открыт'):'не открывал'}</td><td>${p?fmt(p.last_watched_at):'—'}</td></tr>`}).join('');
+  let subs='';
+  for(const s of r.mySubs.slice(0,5)){
+    const u=await sb.storage.from('homework').createSignedUrl(s.file_path,600);
+    subs+=`<tr><td>${fmt(s.uploaded_at)}</td><td>${s.done_tasks}/${s.total_tasks}</td><td>${u.data?`<a href="${u.data.signedUrl}" target="_blank">скачать файл</a>`:'—'}</td></tr>`;
+  }
+  let grid='';
+  if(r.last){grid=DAYS.map(n=>{const x=r.last.by_day?.[n];if(!x)return '';return `<h3>День ${n}: ${x.done}/${x.total}${x.missing?' (лист не найден)':''}</h3><div class="tasks">${Object.entries(x.tasks).map(([k,v])=>`<span class="${v?'ok':''}">${esc(k)} ${v?'✓':'✗'}</span>`).join('')}</div>`}).join('')}
+  d.innerHTML=`<h2>${esc(r.s.full_name||r.s.email)}</h2>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+  <div class="card"><h3 style="margin-top:0">Уроки</h3><div class="scroll"><table><thead><tr><th>Урок</th><th>Просмотр</th><th>Когда</th></tr></thead><tbody>${lines}</tbody></table></div></div>
+  <div class="card"><h3 style="margin-top:0">Загрузки тетради</h3>${subs?`<div class="scroll"><table><thead><tr><th>Дата</th><th>Верно</th><th>Файл</th></tr></thead><tbody>${subs}</tbody></table></div>`:'<p class="muted">Файлов пока нет</p>'}${grid}</div></div>`;
+  d.scrollIntoView({behavior:'smooth'});
+}
+
+/* ---------- роутер ---------- */
+async function route(){
+  if(!S.user)return;
+  const h=location.hash||'#/';
+  const m=h.match(/^#\/lesson\/(\d+)/);
+  if(m)return viewLesson(+m[1]);
+  if(h==='#/admin')return viewAdmin();
+  viewHome();
+}
+window.addEventListener('hashchange',route);
+sb.auth.onAuthStateChange(async(ev,session)=>{
+  if(ev==='SIGNED_OUT'||!session){S={user:null,profile:null,course:null,lessons:[],progress:{},lastSub:null};showAuth();return}
+  if(ev==='SIGNED_IN'||ev==='INITIAL_SESSION'){
+    if(S.user&&S.user.id===session.user.id)return;
+    await loadAll();route();
+  }
+});
+</script>
+</body>
+</html>
